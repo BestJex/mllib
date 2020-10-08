@@ -1,11 +1,10 @@
 package cn.huangchengxi.mllib.cont;
 
-import cn.huangchengxi.mllib.conf.OccurrenceSim;
-import cn.huangchengxi.mllib.conf.OccurrenceSimilarity;
+import cn.huangchengxi.mllib.beans.RecommendItem;
+import cn.huangchengxi.mllib.scala.ItemCFRecommend;
 import cn.huangchengxi.mllib.entities.ItemEntity;
 import cn.huangchengxi.mllib.entities.ItemPref;
 import cn.huangchengxi.mllib.entities.UserEntity;
-import cn.huangchengxi.mllib.repos.ItemCFRepo;
 import cn.huangchengxi.mllib.repos.ItemPrefRepository;
 import cn.huangchengxi.mllib.repos.ItemRepo;
 import cn.huangchengxi.mllib.repos.UserRepo;
@@ -13,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 public class Controller {
@@ -24,7 +21,7 @@ public class Controller {
     @Autowired
     ItemRepo itemRepo;
     @Autowired
-    OccurrenceSim occurrenceSim;
+    ItemCFRecommend itemCFRecommend;
     @Autowired
     ItemPrefRepository itemPrefRepository;
 
@@ -66,6 +63,8 @@ public class Controller {
     }
     @RequestMapping("/pullResult")
     public String pullResult(){
-        return Arrays.toString(occurrenceSim.occurrenceSimilarity());
+        //return Arrays.toString(occurrenceSim.occurrenceSimilarity());
+        List<RecommendItem> recs=itemCFRecommend.getRecommended(1L,10);
+        return Arrays.toString(recs.toArray());
     }
 }

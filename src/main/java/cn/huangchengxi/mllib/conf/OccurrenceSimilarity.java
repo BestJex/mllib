@@ -27,6 +27,7 @@ public class OccurrenceSimilarity implements ItemSimilarity {
 
     @Override
     public List<ItemSemi> calculateResult() {
+        /*
         List<ItemPref> userRdd=itemPrefRepository.findAll();
 
         //prepare data
@@ -53,5 +54,8 @@ public class OccurrenceSimilarity implements ItemSimilarity {
         JavaRDD<Tuple3<Long,Long,Double>> userRdd12=userRdd11.map((Function<Tuple5<Long, Long, Integer, Integer, Integer>, Tuple3<Long, Long, Double>>) f -> new Tuple3<>(f._1(),f._2(),(f._3()/Math.sqrt(f._4()*f._5()))));
 
         return userRdd12.map((Function<Tuple3<Long, Long, Double>, ItemSemi>) f -> new ItemSemi(f._1(),f._2(),f._3())).collect();
+
+         */
+        return null;
     }
 }
